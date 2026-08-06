@@ -27,7 +27,9 @@ I use Focus Bear alongside the smartwatch reminders. Beyond the movement prompts
 
 ## Task
 
-- Adjusted my laptop setup at the library desk by raising the desk height to reduce neck strain, since an external monitor or keyboard isn't available there.
+- Adjusted my laptop setup at the library desk by raising the desk height, since an external monitor or keyboard isn't available there.
 - Identified the desk height adjustment as the key equipment/setup change available to me in this environment to improve posture.
-- Used posture and movement reminders (smartwatch sit-reminders + Focus Bear) for a full workday. Noted improvement: stronger sense of focus and purpose during work sessions, with the timer keeping me on task and significantly reducing distraction.
-- Workspace change made: adjusting desk height to improve screen/posture alignment, combined with scheduled movement breaks triggered by smartwatch reminders.
+- Before-and-after measurement: before the adjustment, the top of my laptop screen sat about 15 cm below my natural eye level, forcing me to look down. After raising the desk, the screen is now roughly at eye level, so I look straight ahead instead of down.
+- Neck/shoulder comfort change: before the adjustment, looking down at the screen caused noticeable neck soreness, especially after long sessions. After raising the screen to eye level, that soreness has reduced significantly.
+- Used posture and movement reminders (smartwatch sit-reminders + Focus Bear) for a full workday. Noted improvement: alongside the reduced neck strain, I also felt a stronger sense of focus and purpose during work sessions, with the Focus Bear timer keeping me on task and significantly reducing distraction.
+- Workspace change made: raising the desk height to bring the laptop screen to eye level (from ~15 cm below eye level to level with eye level), combined with scheduled movement breaks triggered by smartwatch reminders.
