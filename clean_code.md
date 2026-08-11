@@ -142,6 +142,63 @@ Yes. Formatting made the code easier to read because the layout became more pred
 
 Formatting also improved the Markdown files by making spacing and line wrapping more consistent. This makes the learning notes easier to scan, especially when reviewing headings, bullet points, and longer paragraphs.
 
+## Naming Variables And Functions
+
+Good names are one of the simplest ways to make code easier to understand. A variable or function name should explain its purpose clearly enough that another developer can understand the code without needing extra comments. Naming conventions also matter because they make a project predictable. For example, JavaScript commonly uses `camelCase` for variables and functions, and many style guides recommend avoiding unclear abbreviations.
+
+From reviewing naming best practices, the main ideas are:
+
+- Use intention-revealing names that explain what the value or function represents.
+- Prefer clarity over extreme shortness.
+- Avoid vague names like `data`, `temp`, `x`, or `item` when the context is not obvious.
+- Avoid confusing abbreviations that only one person or team understands.
+- Use verbs for functions when the function performs an action, such as `calculate`, `get`, `validate`, or `format`.
+- Keep names consistent with the language and project style guide.
+
+### Unclear Naming Example
+
+In the existing JavaScript example, the function was already working, but some names were still more general than necessary:
+
+```js
+function getActiveCartTotal(items) {
+  return items
+    .filter((item) => item.active)
+    .reduce((total, item) => total + item.price * item.quantity, 0);
+}
+```
+
+The names `items`, `item`, and `total` are understandable in a small example, but they are still broad. In a larger codebase, `items` could mean cart items, menu items, order items, or inventory items. The function name `getActiveCartTotal` is also slightly less precise because the function is calculating a value, not retrieving a stored value.
+
+### Refactored Version
+
+```js
+function calculateActiveCartTotal(cartItems) {
+  return cartItems
+    .filter((cartItem) => cartItem.active)
+    .reduce((runningTotal, cartItem) => runningTotal + cartItem.price * cartItem.quantity, 0);
+}
+```
+
+This version uses `calculateActiveCartTotal` to describe the action more accurately. It also renames `items` to `cartItems`, `item` to `cartItem`, and `total` to `runningTotal`, which makes the purpose of each value clearer.
+
+### What Makes A Good Variable Or Function Name?
+
+A good variable or function name is clear, specific, and honest about what it represents. It should reveal intent, not just type. For example, `cartItems` is better than `items` because it explains what kind of items are being used. `calculateActiveCartTotal` is better than a vague name like `getTotal` because it explains the action and the result.
+
+Good names also match the level of detail needed for the scope. A short name like `i` can be acceptable for a tiny loop counter, but important business values should have more descriptive names. A good function name should usually describe the action being performed and the result or object it affects.
+
+### What Issues Can Arise From Poorly Named Variables?
+
+Poorly named variables can make code feel like a puzzle. Developers may need to read the whole function, inspect surrounding files, or run the code just to understand what a value means. This slows down debugging and code review.
+
+Bad names can also cause incorrect changes. If a name is too vague or misleading, a developer might assume it contains different data than it actually does. For example, `items` could be mistaken for all products instead of only cart items, or `total` could mean subtotal, discounted total, tax total, or running total. These misunderstandings can lead to bugs.
+
+### How Did Refactoring Improve Code Readability?
+
+Refactoring improved readability by making the code explain itself more clearly. The new function name, `calculateActiveCartTotal`, tells the reader that the function computes a cart total from active items. The parameter `cartItems` gives stronger context than `items`, and `cartItem` makes each callback easier to follow.
+
+The name `runningTotal` also helps inside the `reduce` call because it explains that the value is accumulating as the array is processed. After the rename, the reader can understand the purpose of the function more quickly without relying on comments.
+
 ## References
 
 - National Cyber Security Centre, ["Produce clean & maintainable code"](https://www.ncsc.gov.uk/collection/developers-collection/principles/produce-clean-maintainable-code)
@@ -150,3 +207,6 @@ Formatting also improved the Markdown files by making spacing and line wrapping 
 - Airbnb, ["JavaScript Style Guide"](https://github.com/airbnb/javascript)
 - ESLint, ["Find and fix problems in your JavaScript code"](https://eslint.org/)
 - Prettier, ["Why Prettier?"](https://prettier.io/docs/why-prettier.html)
+- Google JavaScript Style Guide, ["Naming"](https://google.github.io/styleguide/jsguide.html#naming)
+- Microsoft Learn, ["Code readability"](https://learn.microsoft.com/en-us/power-apps/guidance/coding-guidelines/code-readability)
+- Microsoft Learn, ["General naming conventions"](https://learn.microsoft.com/et-ee/dotnet/standard/design-guidelines/general-naming-conventions)

@@ -1,9 +1,9 @@
-function getActiveCartTotal(items) {
-  return items
-    .filter((item) => item.active)
-    .reduce((total, item) => total + item.price * item.quantity, 0);
+function calculateActiveCartTotal(cartItems) {
+  return cartItems
+    .filter((cartItem) => cartItem.active)
+    .reduce((runningTotal, cartItem) => runningTotal + cartItem.price * cartItem.quantity, 0);
 }
 
 module.exports = {
-  getActiveCartTotal,
+  calculateActiveCartTotal,
 };
