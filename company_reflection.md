@@ -1,3 +1,5 @@
+# Company Reflection
+
 Our app is built to help people with ADHD live better and get through their daily tasks—to help them stick with small everyday things like brushing their teeth or making the bed. For people with ADHD, even these small tasks can be genuinely hard. The app addresses the everyday-life challenges that ADHD creates: helping them complete daily tasks, and helping them stay focused when they need to concentrate, without being pulled away by their phone or other distractions.
 
 The truth is, there are many people with ADHD all around us who are affected by distraction and similar struggles. Their difficulties are ongoing, yet society tends to overlook them. It's hard for neurotypical people to understand why something like brushing your teeth twice a day could be difficult for someone—and that's exactly the gap our app is trying to help with.

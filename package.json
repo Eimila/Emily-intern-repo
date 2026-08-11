@@ -4,9 +4,14 @@
   "description": "Internship learning notes and code quality practice.",
   "main": "src/cartSummary.js",
   "scripts": {
+    "check": "npm run check:static && npm run lint && npm test",
+    "check:static": "npm run lint:md && npm run spellcheck",
     "format": "prettier --write \"**/*.{js,json,md}\"",
     "lint": "eslint \"src/**/*.js\"",
     "lint:fix": "eslint \"src/**/*.js\" --fix",
+    "lint:md": "markdownlint-cli2",
+    "prepare": "husky",
+    "spellcheck": "cspell \"**/*.md\"",
     "test": "node --test"
   },
   "repository": {
@@ -22,10 +27,13 @@
   },
   "homepage": "https://github.com/Eimila/Emily-intern-repo#readme",
   "devDependencies": {
+    "cspell": "^10.0.1",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
+    "husky": "^9.1.7",
+    "markdownlint-cli2": "^0.23.2",
     "prettier": "^3.9.6"
   }
 }

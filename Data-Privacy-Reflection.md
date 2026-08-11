@@ -32,7 +32,7 @@ The most sensitive of these — health, religious hints, and financial data — 
 
 ## How should you respond to a suspected data breach or accidental disclosure?
 
-- Don't try to hide it or fix it silently. Report it promptly to my supervisor and the appropriate contact (Focus Bear has a breach-management process and a DPO / privacy contact at privacy@focusbear.io).
+- Don't try to hide it or fix it silently. Report it promptly to my supervisor and the appropriate contact (Focus Bear has a breach-management process and a DPO / privacy contact at <privacy@focusbear.io>).
 - Act quickly, since GDPR requires breaches to be assessed and, where necessary, reported to the Supervisory Authority within tight timeframes.
 - Document what happened, what data was involved, and what I did, so the team can respond properly.
 

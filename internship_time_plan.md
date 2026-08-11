@@ -10,7 +10,7 @@
 | Thursday  | –          | 1:00–5:00 | 4     |
 | Friday    | –          | –         | 0     |
 
-**Total: 24 hours per week**
+Total: **24 hours per week**
 
 ## Notes
 
