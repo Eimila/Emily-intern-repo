@@ -71,3 +71,23 @@ Poor messages can also make it harder to find when a bug was introduced. If the 
 I tested three different commit message styles. The vague message, `fixed stuff`, was not helpful because it did not explain the change. The overly detailed message included too much unnecessary explanation, which made it hard to read in the commit history. The well-structured message, `Add commit message practice notes`, was easier to scan and understand because it clearly described the change in a short sentence.
 
 This showed me that useful commit messages are not just about being short. They need to give enough context while still staying focused.
+
+## Creating and Reviewing Pull Requests
+
+### Why are PRs important in a team workflow?
+
+Pull Requests are important because they let a team review changes before they are merged into the main branch. This helps protect the stable version of the project and gives teammates a chance to catch bugs, ask questions, suggest improvements, and confirm that the change fits the project.
+
+PRs also make collaboration more visible. Instead of one person pushing directly to `main`, the team can see what changed, discuss the reason for the change, and keep a record of the review process.
+
+### What makes a well-structured PR?
+
+A well-structured PR has a clear title, a useful description, and focused changes. The title should summarize the purpose of the PR, while the description should explain what changed, why it changed, and how it was tested.
+
+A good PR should also be small enough to review comfortably. If it relates to an issue, it should link to that issue so reviewers can understand the context. Clear sections such as Summary, Changes, and Testing make the PR easier for teammates to read.
+
+### What did I learn from reviewing an open-source PR?
+
+From reviewing an open-source PR, I learned that PRs are not just about submitting code. They are also a place for discussion, feedback, and shared decision-making. Reviewers may ask for changes, point out edge cases, or suggest a cleaner approach before approving the work.
+
+I also noticed that good PRs make the review process easier by explaining the purpose of the change clearly and keeping the changes focused. This helps reviewers understand both the code and the reasoning behind it.
