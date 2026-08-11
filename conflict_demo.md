@@ -1,3 +1,3 @@
 # Merge Conflict Demo
 
-Decision: use the main version.
+Decision: combine the main and branch versions after resolving the conflict.
