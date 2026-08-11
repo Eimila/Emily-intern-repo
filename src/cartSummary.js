@@ -14,6 +14,7 @@ function calculateCartSubtotal(cartItems) {
 }
 
 function calculateRateAmount(baseAmount, rate) {
+  // Keep full precision here so display or payment layers can apply their own rounding rules.
   return baseAmount * rate;
 }
 

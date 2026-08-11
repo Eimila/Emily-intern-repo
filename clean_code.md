@@ -426,6 +426,55 @@ Refactoring improved the code by reducing unnecessary indirection. Now the summa
 
 The code still avoids duplication because the formula remains in `calculateRateAmount`, but it is easier to read because there are fewer pass-through functions. This is a useful reminder that clean code needs balance: small functions are helpful when they clarify responsibility, but too many tiny wrappers can make simple logic harder to follow.
 
+## Commenting And Documentation
+
+Helpful comments and documentation explain context that the code alone cannot express clearly. Good comments usually explain why something exists, why a trade-off was made, or what important constraint future developers should know about. Good documentation helps people use, run, change, or understand a system without needing to reverse-engineer everything from the code.
+
+From researching comment and documentation best practices, the main ideas are:
+
+- Use comments to explain why, not to repeat what the code already says.
+- Keep comments short, accurate, and close to the code they describe.
+- Update comments and documentation when the related code changes.
+- Avoid stale comments because outdated documentation can be worse than no documentation.
+- Prefer clearer names and simpler structure before adding explanatory comments.
+- Document public behavior, setup steps, important decisions, and unusual constraints.
+
+### Poorly Commented Code Example
+
+This is an example of a comment that does not add useful information:
+
+```js
+function calculateRateAmount(baseAmount, rate) {
+  // Multiply baseAmount by rate.
+  return baseAmount * rate;
+}
+```
+
+The comment is poor because it only repeats what the code already says. A developer can see from the expression that the function multiplies two values. The comment adds noise without adding context.
+
+### More Useful Comment
+
+```js
+function calculateRateAmount(baseAmount, rate) {
+  // Keep full precision here so display or payment layers can apply their own rounding rules.
+  return baseAmount * rate;
+}
+```
+
+This comment is more useful because it explains a decision that is not obvious from the code. The multiplication is simple, but the reason for not rounding inside this helper matters. A future developer might otherwise add rounding here and accidentally create inconsistent totals in another part of the system.
+
+### When Should You Add Comments?
+
+You should add comments when the code needs context that cannot be made obvious through naming or structure. Good reasons to add a comment include explaining a business rule, a workaround, a performance trade-off, an external API limitation, a security requirement, or a decision that may look strange later.
+
+Comments are also useful for documenting public functions, setup instructions, project conventions, and important edge cases. The goal is to help future developers understand the intent behind the code, especially when the reason is not visible from the code itself.
+
+### When Should You Avoid Comments And Instead Improve The Code?
+
+You should avoid comments when they only restate the code. Comments like "increment counter" or "filter active items" are usually unnecessary if the code and names are already clear. These comments can become clutter and may fall out of date when the code changes.
+
+Instead of adding a comment to explain confusing code, first try to improve the code itself. Rename unclear variables, extract a function, simplify a conditional, or split a large block into smaller steps. If the code can be made self-explanatory, that is usually better than leaving confusing code behind with a comment attached.
+
 ## References
 
 - National Cyber Security Centre, ["Produce clean & maintainable code"](https://www.ncsc.gov.uk/collection/developers-collection/principles/produce-clean-maintainable-code)
@@ -446,3 +495,6 @@ The code still avoids duplication because the formula remains in `calculateRateA
 - Martin Fowler, ["Refactoring"](https://refactoring.com/)
 - Refactoring.Guru, ["Simplifying Conditional Expressions"](https://refactoring.guru/refactoring/techniques/simplifying-conditional-expressions)
 - Microsoft Learn, ["Extract and inline refactorings"](https://learn.microsoft.com/en-us/visualstudio/ide/reference/refactoring-extract-inline)
+- Google Developer Documentation Style Guide, ["Documentation Best Practices"](https://google.github.io/styleguide/docguide/best_practices.html)
+- Google for Developers, ["Highlights"](https://developers.google.com/style/highlights)
+- TechTarget, ["Best practices for writing clean code comments"](https://www.techtarget.com/searchsoftwarequality/tip/Code-comment-best-practices-every-developer-should-know)
