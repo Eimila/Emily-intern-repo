@@ -475,6 +475,98 @@ You should avoid comments when they only restate the code. Comments like "increm
 
 Instead of adding a comment to explain confusing code, first try to improve the code itself. Rename unclear variables, extract a function, simplify a conditional, or split a large block into smaller steps. If the code can be made self-explanatory, that is usually better than leaving confusing code behind with a comment attached.
 
+## Handling Errors And Edge Cases
+
+Robust code handles unexpected inputs clearly instead of assuming everything will always be valid. Common strategies include validating inputs early, using guard clauses for invalid cases, throwing useful error types, returning safe defaults only when that behavior is intentional, and testing edge cases such as empty arrays, missing values, invalid types, and boundary values.
+
+Guard clauses are especially useful because they handle special cases at the top of a function. This keeps the normal flow of the function flatter and easier to read. Instead of deeply nesting the main logic inside several `if` statements, the function can reject invalid input early and then continue with the happy path.
+
+### Original Code Without Proper Error Handling
+
+The cart summary code originally assumed all input was valid:
+
+```js
+function calculateActiveCartSummary(cartItems, discountRate, taxRate) {
+  const activeCartItems = getActiveCartItems(cartItems);
+  const subtotal = calculateCartSubtotal(activeCartItems);
+  const discountAmount = calculateRateAmount(subtotal, discountRate);
+  const taxableAmount = subtotal - discountAmount;
+  const taxAmount = calculateRateAmount(taxableAmount, taxRate);
+
+  return {
+    subtotal,
+    discountAmount,
+    taxAmount,
+    total: taxableAmount + taxAmount,
+  };
+}
+```
+
+This version worked for normal input, but it did not handle invalid data. If `cartItems` was not an array, the code would fail later when `.filter()` was called. If a price, quantity, discount rate, or tax rate was invalid, the function could return `NaN` or an incorrect total.
+
+### Refactored With Guard Clauses
+
+```js
+function assertValidCartItems(cartItems) {
+  if (!Array.isArray(cartItems)) {
+    throw new TypeError('cartItems must be an array.');
+  }
+
+  cartItems.forEach((cartItem) => {
+    if (cartItem === null || typeof cartItem !== 'object') {
+      throw new TypeError('Each cart item must be an object.');
+    }
+
+    if (!Number.isFinite(cartItem.price) || cartItem.price < 0) {
+      throw new RangeError('Each cart item price must be a non-negative number.');
+    }
+
+    if (!Number.isInteger(cartItem.quantity) || cartItem.quantity < 1) {
+      throw new RangeError('Each cart item quantity must be a positive integer.');
+    }
+  });
+}
+
+function assertValidRate(rate, rateName) {
+  if (!Number.isFinite(rate) || rate < 0 || rate > 1) {
+    throw new RangeError(`${rateName} must be a number between 0 and 1.`);
+  }
+}
+
+function calculateActiveCartSummary(cartItems, discountRate, taxRate) {
+  assertValidCartItems(cartItems);
+  assertValidRate(discountRate, 'discountRate');
+  assertValidRate(taxRate, 'taxRate');
+
+  const activeCartItems = getActiveCartItems(cartItems);
+  const subtotal = calculateCartSubtotal(activeCartItems);
+  const discountAmount = calculateRateAmount(subtotal, discountRate);
+  const taxableAmount = subtotal - discountAmount;
+  const taxAmount = calculateRateAmount(taxableAmount, taxRate);
+
+  return {
+    subtotal,
+    discountAmount,
+    taxAmount,
+    total: taxableAmount + taxAmount,
+  };
+}
+```
+
+The refactored version checks invalid inputs before doing the main calculation. It uses `TypeError` for the wrong kind of value and `RangeError` for values outside the allowed range.
+
+### What Was The Issue With The Original Code?
+
+The issue with the original code was that it trusted all inputs. It assumed `cartItems` would always be an array, each cart item would always have a valid price and quantity, and the discount and tax rates would always be valid numbers between `0` and `1`.
+
+That made the function fragile. Invalid input could cause a confusing runtime error, such as calling `.filter()` on a non-array, or it could quietly produce an incorrect result like `NaN`. The function did not fail early with a clear explanation.
+
+### How Does Handling Errors Improve Reliability?
+
+Handling errors improves reliability because the code responds predictably when something unexpected happens. Instead of letting invalid data flow through the calculation, guard clauses stop the function early and explain what went wrong.
+
+Clear error handling also makes debugging easier. A specific message like `discountRate must be a number between 0 and 1` is much more helpful than discovering a bad total later. This protects the rest of the application from incorrect values and makes the code safer to reuse.
+
 ## References
 
 - National Cyber Security Centre, ["Produce clean & maintainable code"](https://www.ncsc.gov.uk/collection/developers-collection/principles/produce-clean-maintainable-code)
@@ -498,3 +590,6 @@ Instead of adding a comment to explain confusing code, first try to improve the 
 - Google Developer Documentation Style Guide, ["Documentation Best Practices"](https://google.github.io/styleguide/docguide/best_practices.html)
 - Google for Developers, ["Highlights"](https://developers.google.com/style/highlights)
 - TechTarget, ["Best practices for writing clean code comments"](https://www.techtarget.com/searchsoftwarequality/tip/Code-comment-best-practices-every-developer-should-know)
+- Refactoring.Guru, ["Replace Nested Conditional with Guard Clauses"](https://refactoring.guru/replace-nested-conditional-with-guard-clauses)
+- MDN Web Docs, ["Error"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+- MDN Web Docs, ["JavaScript error reference"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors)
