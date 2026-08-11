@@ -6,6 +6,7 @@
   "scripts": {
     "check": "npm run check:static && npm run lint && npm test",
     "check:static": "npm run lint:md && npm run spellcheck",
+    "demo": "node .playground/demo.js",
     "format": "prettier --write \"**/*.{js,json,md}\"",
     "lint": "eslint \"src/**/*.js\"",
     "lint:fix": "eslint \"src/**/*.js\" --fix",
