@@ -348,6 +348,84 @@ Refactoring improved maintainability by creating one source of truth for rate-ba
 
 This means future changes are safer and smaller. If the project later needs rounding, validation, or logging for percentage-based calculations, the change can happen inside `calculateRateAmount` instead of being repeated across multiple functions. The code is also easier to extend because new rate-based calculations can reuse the same helper.
 
+## Refactoring Code For Simplicity
+
+Refactoring means improving the internal structure of code without changing what the code does from the user's point of view. Common refactoring techniques include extracting functions, inlining functions, renaming variables or functions, extracting variables, consolidating conditionals, replacing nested conditionals with guard clauses, and removing unnecessary abstraction.
+
+The key idea is to make small, safe improvements. Refactoring for simplicity does not mean deleting useful structure. It means removing complexity that no longer earns its place.
+
+### Overly Complicated Code Example
+
+After applying DRY, the cart summary code had a shared helper for rate-based calculations:
+
+```js
+function calculateRateAmount(baseAmount, rate) {
+  return baseAmount * rate;
+}
+
+function calculateDiscountAmount(subtotal, discountRate) {
+  return calculateRateAmount(subtotal, discountRate);
+}
+
+function calculateTaxAmount(taxableAmount, taxRate) {
+  return calculateRateAmount(taxableAmount, taxRate);
+}
+
+function calculateActiveCartSummary(cartItems, discountRate, taxRate) {
+  const activeCartItems = getActiveCartItems(cartItems);
+  const subtotal = calculateCartSubtotal(activeCartItems);
+  const discountAmount = calculateDiscountAmount(subtotal, discountRate);
+  const taxableAmount = subtotal - discountAmount;
+  const taxAmount = calculateTaxAmount(taxableAmount, taxRate);
+
+  return {
+    subtotal,
+    discountAmount,
+    taxAmount,
+    total: taxableAmount + taxAmount,
+  };
+}
+```
+
+This code was not broken, but it was more complicated than necessary. The functions `calculateDiscountAmount` and `calculateTaxAmount` did not contain unique discount or tax rules. They only passed arguments to `calculateRateAmount`, so reading the code required extra jumps without adding much meaning.
+
+### Simplified Version
+
+```js
+function calculateRateAmount(baseAmount, rate) {
+  return baseAmount * rate;
+}
+
+function calculateActiveCartSummary(cartItems, discountRate, taxRate) {
+  const activeCartItems = getActiveCartItems(cartItems);
+  const subtotal = calculateCartSubtotal(activeCartItems);
+  const discountAmount = calculateRateAmount(subtotal, discountRate);
+  const taxableAmount = subtotal - discountAmount;
+  const taxAmount = calculateRateAmount(taxableAmount, taxRate);
+
+  return {
+    subtotal,
+    discountAmount,
+    taxAmount,
+    total: taxableAmount + taxAmount,
+  };
+}
+```
+
+This refactor used the inline function technique. The shared `calculateRateAmount` helper stayed because it represents the reusable formula, but the thin wrapper functions were removed because they did not add separate behavior.
+
+### What Made The Original Code Complex?
+
+The original code was complex because it had too many layers for a very small calculation. `calculateDiscountAmount` and `calculateTaxAmount` sounded like meaningful domain functions, but they only forwarded work to another helper. That made the reader move through extra function calls to understand a simple multiplication.
+
+The complexity came from over-abstraction. The code had been split into small pieces, but not every small piece carried enough responsibility to justify existing on its own.
+
+### How Did Refactoring Improve It?
+
+Refactoring improved the code by reducing unnecessary indirection. Now the summary function shows the important steps directly: calculate the subtotal, calculate the discount as a rate amount, calculate the taxable amount, calculate the tax as a rate amount, and return the final total.
+
+The code still avoids duplication because the formula remains in `calculateRateAmount`, but it is easier to read because there are fewer pass-through functions. This is a useful reminder that clean code needs balance: small functions are helpful when they clarify responsibility, but too many tiny wrappers can make simple logic harder to follow.
+
 ## References
 
 - National Cyber Security Centre, ["Produce clean & maintainable code"](https://www.ncsc.gov.uk/collection/developers-collection/principles/produce-clean-maintainable-code)
@@ -365,3 +443,6 @@ This means future changes are safer and smaller. If the project later needs roun
 - Refactoring.Guru, ["Duplicate Code"](https://refactoring.guru/smells/duplicate-code)
 - The Pragmatic Bookshelf, ["Pragmatic Programmer Tips"](https://pragprog.com/tips/)
 - Microsoft Learn, ["Super-DRY Development for ASP.NET Core"](https://learn.microsoft.com/en-us/archive/msdn-magazine/2019/june/patterns-and-practices-super-dry-development-for-asp-net-core)
+- Martin Fowler, ["Refactoring"](https://refactoring.com/)
+- Refactoring.Guru, ["Simplifying Conditional Expressions"](https://refactoring.guru/refactoring/techniques/simplifying-conditional-expressions)
+- Microsoft Learn, ["Extract and inline refactorings"](https://learn.microsoft.com/en-us/visualstudio/ide/reference/refactoring-extract-inline)

@@ -17,14 +17,6 @@ function calculateRateAmount(baseAmount, rate) {
   return baseAmount * rate;
 }
 
-function calculateDiscountAmount(subtotal, discountRate) {
-  return calculateRateAmount(subtotal, discountRate);
-}
-
-function calculateTaxAmount(taxableAmount, taxRate) {
-  return calculateRateAmount(taxableAmount, taxRate);
-}
-
 function calculateActiveCartTotal(cartItems) {
   return calculateCartSubtotal(getActiveCartItems(cartItems));
 }
@@ -32,9 +24,9 @@ function calculateActiveCartTotal(cartItems) {
 function calculateActiveCartSummary(cartItems, discountRate, taxRate) {
   const activeCartItems = getActiveCartItems(cartItems);
   const subtotal = calculateCartSubtotal(activeCartItems);
-  const discountAmount = calculateDiscountAmount(subtotal, discountRate);
+  const discountAmount = calculateRateAmount(subtotal, discountRate);
   const taxableAmount = subtotal - discountAmount;
-  const taxAmount = calculateTaxAmount(taxableAmount, taxRate);
+  const taxAmount = calculateRateAmount(taxableAmount, taxRate);
 
   return {
     subtotal,
