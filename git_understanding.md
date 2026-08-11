@@ -17,3 +17,16 @@ For example, if I changed two files but only one change is ready, I can stage on
 I would stage changes without committing when I want to review what will be included in the commit first. I might also stage changes gradually while working, or prepare a commit before writing the final commit message.
 
 Staging gives me control over what goes into the next commit.
+## Branching and Team Collaboration
+
+### Why is pushing directly to main problematic?
+
+Pushing directly to main can be risky because main is usually the stable version of the project. If unfinished or broken code is pushed directly to main, it can affect everyone on the team.
+
+### How do branches help with reviewing code?
+
+Branches allow developers to work on changes separately before merging them into main. This makes it easier for teammates to review the code, suggest changes, and check that everything works before the change becomes part of the stable project.
+
+### What happens if two people edit the same file on different branches?
+
+If two people edit the same file on different branches, Git will try to merge the changes automatically. If they edit different parts of the file, the merge may work without problems. If they edit the same lines, Git may create a merge conflict, and the team needs to manually decide how to combine the changes.
