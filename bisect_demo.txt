@@ -1,3 +1,4 @@
 status=broken
 feature=login
 bug=app crashes
+feature=profile
