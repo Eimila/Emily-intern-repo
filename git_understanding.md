@@ -46,3 +46,20 @@ I would use it to understand why a line was changed, find the source of a bug, o
 ### What surprised me?
 
 I was surprised that cherry-pick creates a new commit on the current branch using the changes from another branch. I also learned that Git can restore only one file without changing the rest of the project.
+## Writing Meaningful Commit Messages
+
+### What makes a good commit message?
+
+A good commit message is clear, specific, and concise. It should explain what changed and, when necessary, why the change was made. A good message helps someone understand the purpose of a commit without needing to inspect every file immediately.
+
+### How does a clear commit message help in team collaboration?
+
+Clear commit messages help teammates review changes, understand project history, and find important updates later. They make it easier to track bug fixes, features, and decisions across a project.
+
+### How can poor commit messages cause issues later?
+
+Poor commit messages such as "fixed stuff" or "update" make it hard to understand what changed. This can slow down debugging, code review, and future maintenance because developers may need to open each commit to figure out its purpose.
+
+### What did I notice from testing different commit messages?
+
+The vague message was not helpful because it did not explain the change. The overly detailed message was hard to read in the commit history. The well-structured message was easier to scan and understand.s
