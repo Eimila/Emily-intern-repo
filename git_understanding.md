@@ -17,3 +17,32 @@ For example, if I changed two files but only one change is ready, I can stage on
 I would stage changes without committing when I want to review what will be included in the commit first. I might also stage changes gradually while working, or prepare a commit before writing the final commit message.
 
 Staging gives me control over what goes into the next commit.
+## Advanced Git Commands
+
+### git checkout main -- <file>
+
+This command restores a specific file from the main branch without changing other files.
+
+I would use it when I accidentally changed one file and want to restore only that file, while keeping other changes in my working directory.
+
+### git cherry-pick <commit>
+
+This command applies one specific commit from another branch onto the current branch.
+
+I would use it when I only need one useful fix or change from another branch, but I do not want to merge the whole branch.
+
+### git log
+
+This command shows the commit history of the repository.
+
+I would use it to understand how the project changed over time, find previous commits, and check the order of changes.
+
+### git blame <file>
+
+This command shows who last changed each line of a file and which commit made the change.
+
+I would use it to understand why a line was changed, find the source of a bug, or know who to ask about a part of the project.
+
+### What surprised me?
+
+I was surprised that cherry-pick creates a new commit on the current branch using the changes from another branch. I also learned that Git can restore only one file without changing the rest of the project.
