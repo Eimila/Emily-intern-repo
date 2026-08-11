@@ -296,6 +296,58 @@ Refactoring improved the structure by separating the calculation into clear stag
 
 The main function is easier to scan because it no longer hides every detail inside one block. It shows the workflow at a higher level: get active items, calculate subtotal, calculate discount, calculate tax, and return the final summary. This makes the code easier to read, test, and extend.
 
+## Avoiding Code Duplication
+
+The DRY principle means "Don't Repeat Yourself." The core idea is that the same piece of knowledge should have one clear place in the system. DRY is not only about removing lines that look the same. It is about avoiding repeated business rules, repeated calculations, and repeated logic that would need to be updated in multiple places later.
+
+Duplicated code is risky because it is easy to fix one copy and forget another. Over time, the copies can drift apart, which makes bugs harder to find. Refactoring duplicated code often means extracting the shared logic into a function with a clear name.
+
+### Duplicated Code Example
+
+In the cart summary code, these two functions repeated the same calculation pattern:
+
+```js
+function calculateDiscountAmount(subtotal, discountRate) {
+  return subtotal * discountRate;
+}
+
+function calculateTaxAmount(taxableAmount, taxRate) {
+  return taxableAmount * taxRate;
+}
+```
+
+The names are useful, but both functions repeat the same formula: multiply a base amount by a rate. If that calculation later needed rounding or validation, the change would have to be made in both places.
+
+### Refactored Version
+
+```js
+function calculateRateAmount(baseAmount, rate) {
+  return baseAmount * rate;
+}
+
+function calculateDiscountAmount(subtotal, discountRate) {
+  return calculateRateAmount(subtotal, discountRate);
+}
+
+function calculateTaxAmount(taxableAmount, taxRate) {
+  return calculateRateAmount(taxableAmount, taxRate);
+}
+```
+
+The refactored version keeps the meaningful business names `calculateDiscountAmount` and `calculateTaxAmount`, but moves the shared rate calculation into `calculateRateAmount`. This keeps the code readable while giving the repeated logic one clear home.
+
+### What Were The Issues With Duplicated Code?
+
+The duplicated code made the same calculation appear in more than one place. That is a maintainability issue because any future change to rate-based calculations, such as rounding to two decimal places or checking for invalid rates, could easily be applied to one function but missed in the other.
+
+Duplication also makes code harder to scan because the reader has to decide whether two similar lines are intentionally different or accidentally repeated. In this case, both functions were doing the same kind of work, so the shared logic deserved one name.
+
+### How Did Refactoring Improve Maintainability?
+
+Refactoring improved maintainability by creating one source of truth for rate-based amount calculations. Now `calculateRateAmount` owns the shared formula, while the discount and tax functions keep their domain-specific names.
+
+This means future changes are safer and smaller. If the project later needs rounding, validation, or logging for percentage-based calculations, the change can happen inside `calculateRateAmount` instead of being repeated across multiple functions. The code is also easier to extend because new rate-based calculations can reuse the same helper.
+
 ## References
 
 - National Cyber Security Centre, ["Produce clean & maintainable code"](https://www.ncsc.gov.uk/collection/developers-collection/principles/produce-clean-maintainable-code)
@@ -310,3 +362,6 @@ The main function is easier to scan because it no longer hides every detail insi
 - Refactoring.Guru, ["Long Method"](https://refactoring.guru/smells/long-method)
 - Refactoring.Guru, ["Composing Methods"](https://refactoring.guru/refactoring/techniques/composing-methods)
 - Bristol Composites Institute, ["Write small functions that do one thing, and do that one thing well"](https://bristolcompositesinstitute.github.io/RSE-Guide/best-practices/single-responsibility.html)
+- Refactoring.Guru, ["Duplicate Code"](https://refactoring.guru/smells/duplicate-code)
+- The Pragmatic Bookshelf, ["Pragmatic Programmer Tips"](https://pragprog.com/tips/)
+- Microsoft Learn, ["Super-DRY Development for ASP.NET Core"](https://learn.microsoft.com/en-us/archive/msdn-magazine/2019/june/patterns-and-practices-super-dry-development-for-asp-net-core)

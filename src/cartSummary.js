@@ -13,12 +13,16 @@ function calculateCartSubtotal(cartItems) {
   );
 }
 
+function calculateRateAmount(baseAmount, rate) {
+  return baseAmount * rate;
+}
+
 function calculateDiscountAmount(subtotal, discountRate) {
-  return subtotal * discountRate;
+  return calculateRateAmount(subtotal, discountRate);
 }
 
 function calculateTaxAmount(taxableAmount, taxRate) {
-  return taxableAmount * taxRate;
+  return calculateRateAmount(taxableAmount, taxRate);
 }
 
 function calculateActiveCartTotal(cartItems) {
