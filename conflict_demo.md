@@ -1,3 +1,3 @@
 # Merge Conflict Demo
 
-Decision: use the original version.
+Decision: use the branch version.
