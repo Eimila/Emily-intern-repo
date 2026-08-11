@@ -46,3 +46,48 @@ I would use it to understand why a line was changed, find the source of a bug, o
 ### What surprised me?
 
 I was surprised that cherry-pick creates a new commit on the current branch using the changes from another branch. I also learned that Git can restore only one file without changing the rest of the project.
+## Writing Meaningful Commit Messages
+
+### What makes a good commit message?
+
+A good commit message is clear, specific, and concise. It should explain what changed and, when necessary, why the change was made. A strong commit message helps someone understand the purpose of a commit without needing to inspect every file immediately.
+
+For example, `Add commit message practice notes` is better than `fixed stuff` because it describes the actual change. A good commit message should be easy to scan in `git log`, should describe one focused change, and should avoid unnecessary details that make the history harder to read.
+
+### How does a clear commit message help in team collaboration?
+
+Clear commit messages help teammates review changes, understand project history, and find important updates later. They make it easier to track bug fixes, features, and decisions across a project.
+
+In a team, developers often need to understand work that someone else completed days, weeks, or months earlier. A clear message helps reviewers quickly understand the intent of a change before reading the code. It also helps future team members search the history, connect commits to project tasks, and understand why a change was made.
+
+### How can poor commit messages cause issues later?
+
+Poor commit messages such as `fixed stuff`, `update`, or `changes` make it hard to understand what changed. This can slow down debugging, code review, and future maintenance because developers may need to open each commit to figure out its purpose.
+
+Poor messages can also make it harder to find when a bug was introduced. If the project history is full of vague messages, teammates cannot easily tell which commits relate to a feature, bug fix, or documentation update.
+
+### What did I notice from testing different commit messages?
+
+I tested three different commit message styles. The vague message, `fixed stuff`, was not helpful because it did not explain the change. The overly detailed message included too much unnecessary explanation, which made it hard to read in the commit history. The well-structured message, `Add commit message practice notes`, was easier to scan and understand because it clearly described the change in a short sentence.
+
+This showed me that useful commit messages are not just about being short. They need to give enough context while still staying focused.
+
+## Creating and Reviewing Pull Requests
+
+### Why are PRs important in a team workflow?
+
+Pull Requests are important because they let a team review changes before they are merged into the main branch. This helps protect the stable version of the project and gives teammates a chance to catch bugs, ask questions, suggest improvements, and confirm that the change fits the project.
+
+PRs also make collaboration more visible. Instead of one person pushing directly to `main`, the team can see what changed, discuss the reason for the change, and keep a record of the review process.
+
+### What makes a well-structured PR?
+
+A well-structured PR has a clear title, a useful description, and focused changes. The title should summarize the purpose of the PR, while the description should explain what changed, why it changed, and how it was tested.
+
+A good PR should also be small enough to review comfortably. If it relates to an issue, it should link to that issue so reviewers can understand the context. Clear sections such as Summary, Changes, and Testing make the PR easier for teammates to read.
+
+### What did I learn from reviewing an open-source PR?
+
+From reviewing an open-source PR, I learned that PRs are not just about submitting code. They are also a place for discussion, feedback, and shared decision-making. Reviewers may ask for changes, point out edge cases, or suggest a cleaner approach before approving the work.
+
+I also noticed that good PRs make the review process easier by explaining the purpose of the change clearly and keeping the changes focused. This helps reviewers understand both the code and the reasoning behind it.
