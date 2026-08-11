@@ -199,6 +199,103 @@ Refactoring improved readability by making the code explain itself more clearly.
 
 The name `runningTotal` also helps inside the `reduce` call because it explains that the value is accumulating as the array is processed. After the rename, the reader can understand the purpose of the function more quickly without relying on comments.
 
+## Writing Small, Focused Functions
+
+Small, focused functions are easier to understand because each function has one clear reason to exist. A good function should usually do one thing at one level of abstraction. If a function starts filtering data, calculating subtotals, applying discounts, calculating tax, and building a response object all in one place, it becomes harder to test and harder to change safely.
+
+From researching best practices for small functions, the main ideas are:
+
+- Keep each function focused on one responsibility.
+- Use function names to describe the purpose of each step.
+- Extract repeated or complicated logic into helper functions.
+- Avoid mixing different levels of detail in one function.
+- Prefer small behavior-preserving refactors, such as extracting a function, instead of rewriting everything at once.
+- Treat loops, conditionals, and long blocks as signs that part of the function may deserve its own name.
+
+### Long Function Example
+
+This example calculates a cart summary, but it does too many things in one function:
+
+```js
+function calculateActiveCartSummary(cartItems, discountRate, taxRate) {
+  const activeCartItems = cartItems.filter((cartItem) => cartItem.active);
+
+  const subtotal = activeCartItems.reduce(
+    (runningSubtotal, cartItem) => runningSubtotal + cartItem.price * cartItem.quantity,
+    0
+  );
+
+  const discountAmount = subtotal * discountRate;
+  const taxableAmount = subtotal - discountAmount;
+  const taxAmount = taxableAmount * taxRate;
+
+  return {
+    subtotal,
+    discountAmount,
+    taxAmount,
+    total: taxableAmount + taxAmount,
+  };
+}
+```
+
+This function is not terrible, but it already combines several responsibilities: selecting active items, calculating item totals, applying a discount, calculating tax, and building the final summary. If more business rules were added later, such as coupons, shipping, or rounding rules, the function would quickly become harder to follow.
+
+### Refactored Into Smaller Functions
+
+```js
+function getActiveCartItems(cartItems) {
+  return cartItems.filter((cartItem) => cartItem.active);
+}
+
+function calculateCartItemSubtotal(cartItem) {
+  return cartItem.price * cartItem.quantity;
+}
+
+function calculateCartSubtotal(cartItems) {
+  return cartItems.reduce(
+    (runningSubtotal, cartItem) => runningSubtotal + calculateCartItemSubtotal(cartItem),
+    0
+  );
+}
+
+function calculateDiscountAmount(subtotal, discountRate) {
+  return subtotal * discountRate;
+}
+
+function calculateTaxAmount(taxableAmount, taxRate) {
+  return taxableAmount * taxRate;
+}
+
+function calculateActiveCartSummary(cartItems, discountRate, taxRate) {
+  const activeCartItems = getActiveCartItems(cartItems);
+  const subtotal = calculateCartSubtotal(activeCartItems);
+  const discountAmount = calculateDiscountAmount(subtotal, discountRate);
+  const taxableAmount = subtotal - discountAmount;
+  const taxAmount = calculateTaxAmount(taxableAmount, taxRate);
+
+  return {
+    subtotal,
+    discountAmount,
+    taxAmount,
+    total: taxableAmount + taxAmount,
+  };
+}
+```
+
+The refactored version gives each step its own name. The main function now reads more like a summary of the process, while the helper functions contain the smaller details.
+
+### Why Is Breaking Down Functions Beneficial?
+
+Breaking down functions is beneficial because it reduces mental load. A developer can understand one small piece at a time instead of trying to understand every detail at once. Smaller functions are also easier to test because each function has a clear input and output.
+
+This approach also makes future changes safer. For example, if the tax calculation changes, a developer can update `calculateTaxAmount` without touching the filtering or subtotal logic. If the item subtotal rule changes, the update belongs in `calculateCartItemSubtotal`. Clear boundaries make the code easier to maintain.
+
+### How Did Refactoring Improve The Structure Of The Code?
+
+Refactoring improved the structure by separating the calculation into clear stages. The code now has one function for active cart item filtering, one for item subtotal calculation, one for cart subtotal calculation, one for discounts, one for tax, and one coordinating function that builds the final summary.
+
+The main function is easier to scan because it no longer hides every detail inside one block. It shows the workflow at a higher level: get active items, calculate subtotal, calculate discount, calculate tax, and return the final summary. This makes the code easier to read, test, and extend.
+
 ## References
 
 - National Cyber Security Centre, ["Produce clean & maintainable code"](https://www.ncsc.gov.uk/collection/developers-collection/principles/produce-clean-maintainable-code)
@@ -210,3 +307,6 @@ The name `runningTotal` also helps inside the `reduce` call because it explains 
 - Google JavaScript Style Guide, ["Naming"](https://google.github.io/styleguide/jsguide.html#naming)
 - Microsoft Learn, ["Code readability"](https://learn.microsoft.com/en-us/power-apps/guidance/coding-guidelines/code-readability)
 - Microsoft Learn, ["General naming conventions"](https://learn.microsoft.com/et-ee/dotnet/standard/design-guidelines/general-naming-conventions)
+- Refactoring.Guru, ["Long Method"](https://refactoring.guru/smells/long-method)
+- Refactoring.Guru, ["Composing Methods"](https://refactoring.guru/refactoring/techniques/composing-methods)
+- Bristol Composites Institute, ["Write small functions that do one thing, and do that one thing well"](https://bristolcompositesinstitute.github.io/RSE-Guide/best-practices/single-responsibility.html)
