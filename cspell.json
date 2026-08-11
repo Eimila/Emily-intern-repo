@@ -1,0 +1,30 @@
+{
+    "version": "0.2",
+    "language": "en",
+    "words": [
+          "Eimila",
+          "kanban",
+          "Kanban",
+          "cspell",
+          "markdownlint",
+          "husky",
+          "Husky",
+          "backlog",
+          "WIP",
+          "async",
+          "PRs",
+          "scrum",
+          "Scrum",
+          "onboarding",
+          "devDependencies",
+          "npx",
+          "jsonc",
+          "OctoArcade",
+          "changelog",
+          "dotfiles"
+    ],
+    "ignorePaths": [
+          "node_modules",
+          "package-lock.json"
+    ]
+}
