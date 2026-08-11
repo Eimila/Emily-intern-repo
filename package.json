@@ -1,0 +1,30 @@
+{
+  "name": "intern",
+  "version": "1.0.0",
+  "description": "Internship learning notes and code quality practice.",
+  "main": "src/cartSummary.js",
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,json,md}\"",
+    "lint": "eslint \"src/**/*.js\"",
+    "lint:fix": "eslint \"src/**/*.js\" --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eimila/Emily-intern-repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Eimila/Emily-intern-repo/issues"
+  },
+  "homepage": "https://github.com/Eimila/Emily-intern-repo#readme",
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "prettier": "^3.9.6"
+  }
+}

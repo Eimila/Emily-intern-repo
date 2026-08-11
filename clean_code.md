@@ -98,8 +98,55 @@ The rewrite is still efficient for normal cart data because it uses simple array
 
 Clean code is not about making code look fancy. It is about making code easier to understand, safer to change, and better for teamwork. Simplicity, readability, maintainability, consistency, and efficiency all help reduce confusion and make software easier to improve over time.
 
+## Code Formatting And Style Guides
+
+Consistent code style is important because it makes a codebase easier to scan, review, and maintain. When everyone follows the same formatting and naming conventions, developers do not need to spend energy interpreting different personal styles in every file. This also reduces small formatting debates during code review, because automated tools can handle style decisions.
+
+The Airbnb JavaScript Style Guide is a detailed JavaScript convention guide. It recommends patterns such as using object literals, meaningful structure, modules, strict equality, semicolons, consistent whitespace, and clear function formatting. One useful takeaway from reviewing it is that style guides are not just about appearance. Many rules also protect readability and reduce common mistakes, such as using `===` instead of `==`.
+
+For this repository, I installed and configured ESLint and Prettier:
+
+- ESLint checks JavaScript files in `src/**/*.js`.
+- The ESLint setup extends `airbnb-base` and `prettier`.
+- Prettier formats JavaScript, JSON, and Markdown files.
+- `node_modules/` is ignored so installed dependencies are not committed.
+
+The configured commands are:
+
+```bash
+npm run lint
+npm run lint:fix
+npm run format
+```
+
+### Why Is Code Formatting Important?
+
+Code formatting is important because it makes code easier to read and compare. Consistent indentation, spacing, line breaks, quotes, and semicolons help developers understand the structure of the code quickly. Formatting also improves teamwork because pull requests become focused on logic and behavior instead of personal style preferences.
+
+Formatting tools are useful because they apply rules automatically. This makes the codebase more consistent and removes the need for developers to manually fix every small spacing or line-length issue.
+
+### What Issues Did The Linter Detect?
+
+The linter detected four issues in the initial JavaScript example:
+
+- `no-var`: The code used `var` instead of `let` or `const`.
+- `no-plusplus`: The code used the unary `++` operator in a loop.
+- `eqeqeq`: The code used `==` instead of strict equality `===`.
+- `operator-assignment`: The code used `total = total + value` instead of a shorter assignment pattern.
+
+These issues showed that the code worked, but it did not fully follow the configured JavaScript style guide. I fixed the code by rewriting the calculation with `filter` and `reduce`, using clearer function naming, avoiding `var`, and removing the loose equality comparison.
+
+### Did Formatting The Code Make It Easier To Read?
+
+Yes. Formatting made the code easier to read because the layout became more predictable. Prettier added consistent semicolons, spacing, and trailing commas where appropriate. After linting and cleanup, the JavaScript example became shorter and clearer because the main logic now reads as a direct sequence: filter active items, then calculate the total.
+
+Formatting also improved the Markdown files by making spacing and line wrapping more consistent. This makes the learning notes easier to scan, especially when reviewing headings, bullet points, and longer paragraphs.
+
 ## References
 
 - National Cyber Security Centre, ["Produce clean & maintainable code"](https://www.ncsc.gov.uk/collection/developers-collection/principles/produce-clean-maintainable-code)
 - Google Go Style Guide, ["Style principles"](https://google.github.io/styleguide/go/guide.html)
 - SonarSource, ["Clean Code definition"](https://docs.sonarsource.com/sonarqube-server/10.6/user-guide/clean-code/definition)
+- Airbnb, ["JavaScript Style Guide"](https://github.com/airbnb/javascript)
+- ESLint, ["Find and fix problems in your JavaScript code"](https://eslint.org/)
+- Prettier, ["Why Prettier?"](https://prettier.io/docs/why-prettier.html)
