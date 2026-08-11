@@ -567,6 +567,53 @@ Handling errors improves reliability because the code responds predictably when 
 
 Clear error handling also makes debugging easier. A specific message like `discountRate must be a number between 0 and 1` is much more helpful than discovering a bad total later. This protects the rest of the application from incorrect values and makes the code safer to reuse.
 
+## Writing Unit Tests For Clean Code
+
+Unit tests check small pieces of code in isolation. They are important because they confirm that individual functions behave correctly for normal inputs, edge cases, and error cases. Unit tests also make refactoring safer because developers can change the internal structure of code and quickly check whether the expected behavior still works.
+
+For this repository, I chose Node.js's built-in `node:test` framework. It fits this project because the code is JavaScript, the project already uses Node, and the built-in test runner does not require adding another testing dependency. I used `node:assert/strict` for assertions.
+
+The test command is:
+
+```bash
+npm test
+```
+
+### Unit Tests Added
+
+I added unit tests for the cart summary functions:
+
+```js
+test('calculateActiveCartTotal totals only active cart items', () => {
+  const cartItems = [
+    { active: true, price: 10, quantity: 2 },
+    { active: false, price: 100, quantity: 1 },
+    { active: true, price: 5, quantity: 3 },
+  ];
+
+  assert.equal(calculateActiveCartTotal(cartItems), 35);
+});
+```
+
+The full test file also checks:
+
+- The summary calculation with discount and tax.
+- Empty cart behavior.
+- Invalid cart item validation.
+- Invalid rate validation.
+
+### How Do Unit Tests Help Keep Code Clean?
+
+Unit tests help keep code clean by making expected behavior explicit. When a function has tests, future developers can see what the function is supposed to do without guessing from the implementation alone. Tests also encourage smaller, focused functions because small functions are easier to test.
+
+Unit tests also protect refactoring. Clean code often changes over time as names improve, duplication is removed, or complex logic is simplified. Tests make those changes safer because they quickly show whether the code still behaves the same after the internal structure changes.
+
+### What Issues Did You Find While Testing?
+
+Testing highlighted the important edge cases the cart code needs to support. The happy path was straightforward, but the tests made it clear that empty carts, inactive items, invalid prices, and invalid rates should be checked deliberately instead of left to chance.
+
+The tests did not reveal a failing bug in the current implementation because the guard clauses from the previous refactor already handled invalid inputs. However, writing the tests confirmed that those guard clauses behave as intended and that invalid data fails with clear errors instead of producing incorrect totals like `NaN`.
+
 ## References
 
 - National Cyber Security Centre, ["Produce clean & maintainable code"](https://www.ncsc.gov.uk/collection/developers-collection/principles/produce-clean-maintainable-code)
@@ -593,3 +640,5 @@ Clear error handling also makes debugging easier. A specific message like `disco
 - Refactoring.Guru, ["Replace Nested Conditional with Guard Clauses"](https://refactoring.guru/replace-nested-conditional-with-guard-clauses)
 - MDN Web Docs, ["Error"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 - MDN Web Docs, ["JavaScript error reference"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors)
+- Node.js, ["Test runner"](https://nodejs.org/api/test.html)
+- TechTarget, ["Why is unit testing important for developers?"](https://www.techtarget.com/searchsoftwarequality/answer/Is-unit-testing-an-important-aspect-of-software-development)
