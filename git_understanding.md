@@ -46,3 +46,20 @@ I would use it to understand why a line was changed, find the source of a bug, o
 ### What surprised me?
 
 I was surprised that cherry-pick creates a new commit on the current branch using the changes from another branch. I also learned that Git can restore only one file without changing the rest of the project.
+## Debugging with git bisect
+
+### What does git bisect do?
+
+`git bisect` helps find the commit that introduced a bug. It uses a binary search process between a known good commit and a known bad commit. Git checks out commits in the middle, and I mark each one as good or bad until Git identifies the first bad commit.
+
+### When would you use it in a real-world debugging situation?
+
+I would use `git bisect` when a bug appears but I do not know which change caused it. This is useful in long-running projects with many commits, especially when manually checking every commit would take too much time.
+
+### How does it compare to manually reviewing commits?
+
+`git bisect` is faster than manually reviewing commits because it narrows down the problem step by step. Instead of reading every commit, I only need to test selected commits and tell Git whether each one is good or bad.
+
+### What surprised me?
+
+I was surprised that Git can automatically move through old commits and help locate the exact commit that introduced a problem. It feels much more efficient than guessing or checking commits one by one.
