@@ -62,7 +62,9 @@ Large teams often need more complex pipelines. They may run multiple test suites
 
 ## Test PR Review
 
-I opened a test pull request from the `codex/static-analysis-ci` branch into `main` to review the automated checks. The expected CI behavior is that GitHub Actions runs the static analysis workflow and reports whether Markdown linting and spell checks pass before the PR is merged.
+I opened a test pull request from the `codex/static-analysis-ci` branch into `main` to review the automated checks: <https://github.com/Eimila/Emily-intern-repo/pull/84>.
+
+GitHub Actions ran the `Markdown lint and spell check` job on the PR. The automated checks passed, confirming that the workflow successfully installs dependencies and runs `npm run check:static` before the PR is merged.
 
 ## References
 
