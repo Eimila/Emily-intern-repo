@@ -3,6 +3,8 @@
   "language": "en,en-AU",
   "ignorePaths": [
     "node_modules",
+    "HelloApp/.build",
+    "HelloApp/.swiftpm",
     "package-lock.json",
     ".git",
     ".github/workflows/static-analysis.yml"

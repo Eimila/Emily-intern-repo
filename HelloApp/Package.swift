@@ -13,9 +13,18 @@ let package = Package(
             targets: ["HelloApp"]
         ),
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/apple/swift-collections.git",
+            from: "1.1.0"
+        ),
+    ],
     targets: [
         .executableTarget(
-            name: "HelloApp"
+            name: "HelloApp",
+            dependencies: [
+                .product(name: "Collections", package: "swift-collections"),
+            ]
         ),
         .testTarget(
             name: "HelloAppTests",

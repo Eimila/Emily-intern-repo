@@ -7,5 +7,5 @@
     },
     "MD033": false
   },
-  "globs": ["**/*.md", "!node_modules"]
+  "globs": ["**/*.md", "!node_modules", "!HelloApp/.build", "!HelloApp/.swiftpm"]
 }

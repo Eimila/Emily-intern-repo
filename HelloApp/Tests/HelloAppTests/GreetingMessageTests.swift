@@ -19,4 +19,10 @@ struct GreetingMessageTests {
 
         #expect(greeting.consoleMessage() == "Hello from the macOS app!")
     }
+
+    @Test func featureListUsesPackageToKeepUniqueOrderedValues() {
+        let greeting = GreetingMessage()
+
+        #expect(greeting.featureList() == ["SwiftUI", "macOS", "Swift Package"])
+    }
 }
