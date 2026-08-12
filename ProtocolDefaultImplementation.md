@@ -60,3 +60,11 @@ Run the standalone Swift example from Terminal:
 ```bash
 swift ProtocolDefaultImplementationExample.swift
 ```
+
+There is also a shorter file named `SimpleProtocolDefaultImplementation.swift`
+that shows the minimum pattern requested by the deliverable:
+
+1. A protocol with one method.
+2. A default implementation in an extension.
+3. One type that uses the default implementation.
+4. One type that provides a custom implementation.

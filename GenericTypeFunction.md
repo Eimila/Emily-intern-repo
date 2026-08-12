@@ -55,3 +55,17 @@ Run the standalone Swift example from Terminal:
 ```bash
 swift GenericTypeFunctionExample.swift
 ```
+
+The repository also includes a TypeScript example in `src/genericExample.ts`.
+It shows both a generic type and generic functions:
+
+```typescript
+type ApiResponse<T> = {
+  data: T;
+  success: boolean;
+};
+
+function identity<T>(value: T): T {
+  return value;
+}
+```

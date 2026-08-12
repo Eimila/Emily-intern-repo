@@ -9,6 +9,11 @@ This repo includes small Xcode and Swift practice deliverables:
   interface.
 - [HelloApp](HelloApp/) contains the simple Swift macOS **Hello App** project
   folder, including SwiftUI source files, package configuration, and tests.
+- [Protocol Default Implementation](ProtocolDefaultImplementation.md) documents
+  a Swift protocol and extension-based default implementation, with a minimal
+  example in `SimpleProtocolDefaultImplementation.swift`.
+- [Generic Type and Function Example](GenericTypeFunction.md) documents generic
+  examples, including a TypeScript example in `src/genericExample.ts`.
 
 ## CI/CD Static Analysis Setup
 
