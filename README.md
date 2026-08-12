@@ -1,5 +1,15 @@
 # Emily-intern-repo
 
+## Xcode and Swift Deliverables
+
+This repo includes small Xcode and Swift practice deliverables:
+
+- [Xcode Interface Exploration](Xcode-Interface-Exploration.md) summarizes each
+  main Xcode panel and includes personal observations from exploring the
+  interface.
+- [HelloApp](HelloApp/) contains the simple Swift macOS **Hello App** project
+  folder, including SwiftUI source files, package configuration, and tests.
+
 ## CI/CD Static Analysis Setup
 
 This repo includes CI/CD static analysis for Markdown quality checks.
