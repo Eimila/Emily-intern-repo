@@ -17,5 +17,9 @@ let package = Package(
         .executableTarget(
             name: "HelloApp"
         ),
+        .testTarget(
+            name: "HelloAppTests",
+            dependencies: ["HelloApp"]
+        ),
     ]
 )

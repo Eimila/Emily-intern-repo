@@ -11,18 +11,20 @@ struct HelloApp: App {
 }
 
 struct ContentView: View {
+    private let greeting = GreetingMessage()
+
     var body: some View {
         VStack(spacing: 16) {
-            Text("Hello App")
+            Text(greeting.appTitle)
                 .font(.largeTitle)
                 .fontWeight(.bold)
 
-            Text("My first simple Swift macOS app.")
+            Text(greeting.appDescription)
                 .font(.title3)
                 .foregroundStyle(.secondary)
 
-            Button("Say Hello") {
-                print("Hello from the macOS app!")
+            Button(greeting.buttonTitle) {
+                print(greeting.consoleMessage())
             }
             .buttonStyle(.borderedProminent)
         }
