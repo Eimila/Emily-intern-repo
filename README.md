@@ -1,6 +1,6 @@
 # Emily-intern-repo
 
-<!-- cspell:words AXAPI -->
+<!-- cspell:words AXAPI tccutil -->
 
 ## Xcode and Swift Deliverables
 
@@ -28,6 +28,35 @@ This repo includes small Xcode and Swift practice deliverables:
 - [AX API Snippet](AX-API-Snippet.md) explains the Accessibility API example in
   `AXAPIInteractionExample.swift`, including permission checking, focused UI
   element access, attribute listing, and a window action.
+
+## TCC Reset Commands
+
+The TCC debugging reset command guide is in
+[TCC Reset Commands](TCC-Reset-Commands.md).
+
+Common reset commands:
+
+```bash
+tccutil reset All
+tccutil reset Camera
+tccutil reset Microphone
+tccutil reset ScreenCapture
+tccutil reset Accessibility
+tccutil reset ListenEvent
+tccutil reset AppleEvents
+```
+
+Use app-specific resets when testing one app:
+
+```bash
+tccutil reset Camera com.example.MyApp
+tccutil reset Microphone com.example.MyApp
+tccutil reset Accessibility com.example.MyApp
+```
+
+These commands clear saved TCC decisions so permission prompts and denied
+states can be tested again. After resetting, quit and reopen the app before
+retesting.
 
 ## Provisioning and Code Signing Summary
 
