@@ -35,6 +35,9 @@ This repo includes small Xcode and Swift practice deliverables:
 - [AX API Snippet](AX-API-Snippet.md) explains the Accessibility API example in
   `AXAPIInteractionExample.swift`, including permission checking, focused UI
   element access, attribute listing, and a window action.
+- [Helpers, Login Items, and Privileged Tools Architecture](Helpers-LoginItems-PrivilegedTools-Diagram.md)
+  shows the relationship between the main app, helper app, login item, XPC
+  service, authorization, and privileged tool.
 
 ## TCC Reset Commands
 
