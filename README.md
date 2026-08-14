@@ -25,6 +25,8 @@ This repo includes small Xcode and Swift practice deliverables:
   Swift `POST` request and prints the response JSON.
 - [Timeout and Decoding Error Example](TimeoutAndDecodingErrorExample.swift)
   demonstrates async timeout handling and Swift `DecodingError` cases.
+- [Generic NetworkManager Example](NetworkManagerGenericExample.swift)
+  implements reusable generic GET and POST helpers for Swift `Codable` types.
 - [AX API Snippet](AX-API-Snippet.md) explains the Accessibility API example in
   `AXAPIInteractionExample.swift`, including permission checking, focused UI
   element access, attribute listing, and a window action.
