@@ -12,6 +12,9 @@ This repo includes small Xcode and Swift practice deliverables:
 - [HelloApp](HelloApp/) contains the simple Swift macOS **Hello App** project
   folder, including SwiftUI source files, permission requests, an entitlements
   file, package configuration, and tests.
+- [HelloApp Permission Prompt Evidence](HelloApp/PermissionPromptEvidence.md)
+  lists the actual macOS permission keys and the code that triggers Camera and
+  Microphone prompts.
 - [Protocol Default Implementation](ProtocolDefaultImplementation.md) documents
   a Swift protocol and extension-based default implementation, with a minimal
   example in `SimpleProtocolDefaultImplementation.swift`.
@@ -27,6 +30,8 @@ This repo includes small Xcode and Swift practice deliverables:
   demonstrates async timeout handling and Swift `DecodingError` cases.
 - [Generic NetworkManager Example](NetworkManagerGenericExample.swift)
   implements reusable generic GET and POST helpers for Swift `Codable` types.
+- [JSONPlaceholder Project](JSONPlaceholderProject/) is a Swift Package that
+  fetches posts and users from JSONPlaceholder and prints post summaries.
 - [AX API Snippet](AX-API-Snippet.md) explains the Accessibility API example in
   `AXAPIInteractionExample.swift`, including permission checking, focused UI
   element access, attribute listing, and a window action.

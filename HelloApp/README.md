@@ -10,6 +10,8 @@ This folder contains a simple Swift macOS app built with SwiftUI.
 - `Info.plist` contains the macOS permission usage description keys used by the
   permission prompts.
 - `HelloApp.entitlements` lists the sandbox capabilities needed by the app.
+- `PermissionPromptEvidence.md` summarizes the permission keys, trigger code,
+  and local verification.
 - `Sources/HelloApp/HelloApp.swift` contains the SwiftUI macOS app entry point
   and main view.
 - `Sources/HelloApp/GreetingMessage.swift` contains small reusable app text
