@@ -30,6 +30,19 @@ swift build --package-path HelloApp
 
 The app shows a small window with a hello message and a short description.
 
+## Permission Requests
+
+The app includes a **Request Permissions** button. Click it while the app is
+running to trigger two real macOS permission requests:
+
+1. Notification permission through `UNUserNotificationCenter`.
+2. Microphone permission through `AVCaptureDevice.requestAccess(for: .audio)`.
+
+The app updates the window with whether each permission was granted or denied.
+During local testing, the project built successfully from Terminal. The actual
+permission prompts appear when the app is run interactively and the button is
+clicked.
+
 ## Run Tests
 
 From the repository root, run:
