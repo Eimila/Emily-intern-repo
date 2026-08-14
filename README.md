@@ -15,6 +15,25 @@ This repo includes small Xcode and Swift practice deliverables:
 - [Generic Type and Function Example](GenericTypeFunction.md) documents generic
   examples, including a TypeScript example in `src/genericExample.ts`.
 
+## Provisioning and Code Signing Summary
+
+Provisioning and code signing are part of Apple's app security workflow.
+
+- Provisioning profiles connect the app's bundle identifier, developer team,
+  signing certificate, allowed devices or distribution method, and enabled app
+  capabilities.
+- Certificates identify the developer or team that signs the app. Development
+  certificates are used for testing, while distribution certificates are used
+  for release builds.
+- Code signing attaches a digital signature to the app so Apple platforms can
+  verify who built it and whether the app has been changed after signing.
+- Provisioning and signing work together: the certificate proves the app's
+  developer identity, while the provisioning profile controls where the signed
+  app is allowed to run and which capabilities it can use.
+
+More detail is available in
+[Provisioning and Signing Summary](Provisioning-and-Signing-Summary.md).
+
 ## CI/CD Static Analysis Setup
 
 This repo includes CI/CD static analysis for Markdown quality checks.
