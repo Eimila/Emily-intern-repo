@@ -3,6 +3,11 @@
 This Swift Package demonstrates a small network project using the public
 JSONPlaceholder API.
 
+It fetches:
+
+- `https://jsonplaceholder.typicode.com/posts`
+- `https://jsonplaceholder.typicode.com/users`
+
 ## What It Shows
 
 - A reusable generic `NetworkManager`.
