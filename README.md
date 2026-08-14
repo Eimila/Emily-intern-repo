@@ -14,6 +14,8 @@ This repo includes small Xcode and Swift practice deliverables:
   example in `SimpleProtocolDefaultImplementation.swift`.
 - [Generic Type and Function Example](GenericTypeFunction.md) documents generic
   examples, including a TypeScript example in `src/genericExample.ts`.
+- [Decoding JSON Playground](DecodingJSON.playground/) demonstrates decoding
+  nested JSON into Swift `Codable` types with `JSONDecoder`.
 
 ## Provisioning and Code Signing Summary
 
