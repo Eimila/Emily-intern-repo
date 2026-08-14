@@ -38,6 +38,21 @@ func copiedAttribute<T>(
     return value as? T
 }
 
+func printAttributeNames(for element: AXUIElement) {
+    var attributeNames: CFArray?
+    let result = AXUIElementCopyAttributeNames(element, &attributeNames)
+
+    guard result == .success, let names = attributeNames as? [String] else {
+        print("Could not list accessibility attributes. AX error: \(result.rawValue)")
+        return
+    }
+
+    print("Available accessibility attributes:")
+    names.sorted().forEach { name in
+        print("- \(name)")
+    }
+}
+
 func printFocusedApplicationDetails() {
     guard requestAccessibilityTrustIfNeeded() else {
         print("Accessibility access is not trusted yet.")
@@ -49,6 +64,8 @@ func printFocusedApplicationDetails() {
         print("No focused application found.")
         return
     }
+
+    printAttributeNames(for: appElement)
 
     let appTitle = copiedAttribute(
         kAXTitleAttribute,

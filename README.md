@@ -1,5 +1,7 @@
 # Emily-intern-repo
 
+<!-- cspell:words AXAPI -->
+
 ## Xcode and Swift Deliverables
 
 This repo includes small Xcode and Swift practice deliverables:
@@ -18,6 +20,9 @@ This repo includes small Xcode and Swift practice deliverables:
   nested JSON into Swift `Codable` types with `JSONDecoder`.
 - [Converted Async/Await Example](ConvertedAsyncAwaitExample.swift) shows a
   completion handler API converted to Swift `async`/`await`.
+- [AX API Snippet](AX-API-Snippet.md) explains the Accessibility API example in
+  `AXAPIInteractionExample.swift`, including permission checking, focused UI
+  element access, attribute listing, and a window action.
 
 ## Provisioning and Code Signing Summary
 
