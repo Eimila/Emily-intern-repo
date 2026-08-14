@@ -32,6 +32,8 @@ This repo includes small Xcode and Swift practice deliverables:
   implements reusable generic GET and POST helpers for Swift `Codable` types.
 - [JSONPlaceholder Project](JSONPlaceholderProject/) is a Swift Package that
   fetches posts and users from JSONPlaceholder and prints post summaries.
+- [API List App](APIListApp/) is a SwiftUI app that fetches JSONPlaceholder
+  todos and displays the API items in a SwiftUI `List`.
 - [AX API Snippet](AX-API-Snippet.md) explains the Accessibility API example in
   `AXAPIInteractionExample.swift`, including permission checking, focused UI
   element access, attribute listing, and a window action.
