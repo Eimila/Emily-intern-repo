@@ -63,19 +63,11 @@ func demonstrateTimeout() async {
     }
 }
 
-func demonstrateDecodingError() {
-    print("Decoding error example")
-
-    let invalidJSON = """
-    {
-        "id": "one",
-        "title": "Practise JSON decoding",
-        "completed": false
-    }
-    """
+func demonstrateDecodingError(label: String, json: String) {
+    print(label)
 
     do {
-        let data = Data(invalidJSON.utf8)
+        let data = Data(json.utf8)
         let item = try JSONDecoder().decode(TodoItem.self, from: data)
         print("Decoded item: \(item.title)")
     } catch DecodingError.typeMismatch(let type, let context) {
@@ -94,4 +86,29 @@ func demonstrateDecodingError() {
 await demonstrateTimeout()
 
 print("")
-demonstrateDecodingError()
+
+let typeMismatchJSON = """
+{
+    "id": "one",
+    "title": "Practise JSON decoding",
+    "completed": false
+}
+"""
+
+let missingKeyJSON = """
+{
+    "id": 2,
+    "completed": true
+}
+"""
+
+demonstrateDecodingError(
+    label: "Decoding type mismatch example",
+    json: typeMismatchJSON
+)
+
+print("")
+demonstrateDecodingError(
+    label: "Decoding missing key example",
+    json: missingKeyJSON
+)
