@@ -20,6 +20,8 @@ This repo includes small Xcode and Swift practice deliverables:
   nested JSON into Swift `Codable` types with `JSONDecoder`.
 - [Converted Async/Await Example](ConvertedAsyncAwaitExample.swift) shows a
   completion handler API converted to Swift `async`/`await`.
+- [Send POST Request Example](SendPOSTRequestExample.swift) sends JSON with a
+  Swift `POST` request and prints the response JSON.
 - [AX API Snippet](AX-API-Snippet.md) explains the Accessibility API example in
   `AXAPIInteractionExample.swift`, including permission checking, focused UI
   element access, attribute listing, and a window action.
