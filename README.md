@@ -16,6 +16,8 @@ This repo includes small Xcode and Swift practice deliverables:
   examples, including a TypeScript example in `src/genericExample.ts`.
 - [Decoding JSON Playground](DecodingJSON.playground/) demonstrates decoding
   nested JSON into Swift `Codable` types with `JSONDecoder`.
+- [Converted Async/Await Example](ConvertedAsyncAwaitExample.swift) shows a
+  completion handler API converted to Swift `async`/`await`.
 
 ## Provisioning and Code Signing Summary
 
