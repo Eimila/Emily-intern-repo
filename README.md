@@ -10,7 +10,8 @@ This repo includes small Xcode and Swift practice deliverables:
   main Xcode panel and includes personal observations from exploring the
   interface.
 - [HelloApp](HelloApp/) contains the simple Swift macOS **Hello App** project
-  folder, including SwiftUI source files, package configuration, and tests.
+  folder, including SwiftUI source files, permission requests, an entitlements
+  file, package configuration, and tests.
 - [Protocol Default Implementation](ProtocolDefaultImplementation.md) documents
   a Swift protocol and extension-based default implementation, with a minimal
   example in `SimpleProtocolDefaultImplementation.swift`.
@@ -22,6 +23,8 @@ This repo includes small Xcode and Swift practice deliverables:
   completion handler API converted to Swift `async`/`await`.
 - [Send POST Request Example](SendPOSTRequestExample.swift) sends JSON with a
   Swift `POST` request and prints the response JSON.
+- [Timeout and Decoding Error Example](TimeoutAndDecodingErrorExample.swift)
+  demonstrates async timeout handling and Swift `DecodingError` cases.
 - [AX API Snippet](AX-API-Snippet.md) explains the Accessibility API example in
   `AXAPIInteractionExample.swift`, including permission checking, focused UI
   element access, attribute listing, and a window action.
