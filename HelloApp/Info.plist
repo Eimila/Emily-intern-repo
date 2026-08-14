@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>com.example.HelloApp</string>
+    <key>CFBundleName</key>
+    <string>HelloApp</string>
+    <key>NSCameraUsageDescription</key>
+    <string>HelloApp requests camera access to demonstrate a macOS permission prompt.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>HelloApp requests microphone access to demonstrate a macOS permission prompt.</string>
+</dict>
+</plist>

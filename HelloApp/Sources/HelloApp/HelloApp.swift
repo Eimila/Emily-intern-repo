@@ -15,6 +15,7 @@ struct HelloApp: App {
 struct ContentView: View {
     private let greeting = GreetingMessage()
     @State private var notificationStatus = "Notification permission: not requested"
+    @State private var cameraStatus = "Camera permission: not requested"
     @State private var microphoneStatus = "Microphone permission: not requested"
 
     var body: some View {
@@ -34,15 +35,16 @@ struct ContentView: View {
 
             Button("Request Permissions") {
                 // Trigger this button while the app is running to request two
-                // real permissions: notifications and microphone access.
+                // tested macOS permissions: camera and microphone access.
                 Task {
-                    await requestTwoPermissions()
+                    await requestSystemPermissions()
                 }
             }
             .buttonStyle(.bordered)
 
             VStack(alignment: .leading, spacing: 8) {
                 Text(notificationStatus)
+                Text(cameraStatus)
                 Text(microphoneStatus)
             }
             .font(.caption)
@@ -53,8 +55,9 @@ struct ContentView: View {
     }
 
     @MainActor
-    private func requestTwoPermissions() async {
+    private func requestSystemPermissions() async {
         notificationStatus = "Notification permission: requesting..."
+        cameraStatus = "Camera permission: waiting..."
         microphoneStatus = "Microphone permission: waiting..."
 
         do {
@@ -64,6 +67,10 @@ struct ContentView: View {
         } catch {
             notificationStatus = "Notification permission error: \(error.localizedDescription)"
         }
+
+        cameraStatus = "Camera permission: requesting..."
+        let cameraGranted = await AVCaptureDevice.requestAccess(for: .video)
+        cameraStatus = "Camera permission: \(cameraGranted ? "granted" : "denied")"
 
         microphoneStatus = "Microphone permission: requesting..."
         let microphoneGranted = await AVCaptureDevice.requestAccess(for: .audio)
